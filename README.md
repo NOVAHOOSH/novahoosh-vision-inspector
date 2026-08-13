@@ -1,84 +1,98 @@
-# NOVAHOOSH Industrial Inspection
+# NOVAHOOSH Vision Inspection
 
-## AI-Based Beverage Bottle Cap Quality Inspection System
+## AI-Based Beverage Bottle Cap Quality Inspection Demo
 
-An industrial computer vision solution developed by **NOVAHOOSH** for automated quality control in beverage production lines.
+A computer vision demonstration developed by **NOVAHOOSH** for automated beverage bottle cap quality inspection.
 
-The system uses deep learning, real-time object detection, tracking algorithms, and edge AI deployment to detect bottle cap defects and improve manufacturing quality.
+This project demonstrates how artificial intelligence, deep learning, and real-time image processing can be applied to detect bottle cap defects and support automated quality control systems in manufacturing environments.
+
+The current repository focuses on an AI vision prototype, including detection, tracking, defect analysis, and visualization. The architecture is designed as a foundation for future industrial deployment.
 
 ---
 
 # Problem
 
-## Automated Quality Control Challenge in Beverage Manufacturing
+## Quality Inspection Challenge in Beverage Manufacturing
 
-In high-speed beverage production lines, incorrect bottle cap installation can lead to serious quality and economic problems:
+In beverage production, incorrect bottle cap installation can create significant quality and economic issues:
 
-- Liquid leakage from bottles
-- Damage to transportation boxes
-- Product waste and production losses
-- Increased cleaning and maintenance costs
-- Customer dissatisfaction and brand reputation damage
+- Liquid leakage and product loss
+- Damaged transportation packages
+- Increased cleaning and maintenance requirements
+- Product rejection and customer dissatisfaction
+- Negative impact on brand reputation
 
-Traditional manual inspection methods cannot provide reliable quality control at modern production speeds.
+Traditional manual inspection methods are difficult to scale for high-speed production environments.
 
-Increasing production rate while maintaining product quality requires an intelligent automated inspection system capable of operating continuously and accurately.
+An AI-based vision system can provide continuous monitoring and assist quality control teams by automatically identifying potential defects.
 
 ---
 
 # Solution
 
-## AI-Powered Industrial Vision Inspection
+## AI-Powered Vision Inspection Prototype
 
-NOVAHOOSH Industrial Inspection provides an automated vision-based quality control solution.
+NOVAHOOSH Vision Inspection demonstrates an automated inspection pipeline based on deep learning and computer vision.
 
-The system captures real-time images from industrial cameras and analyzes each bottle using deep learning algorithms.
+The system processes video input, detects bottle caps, analyzes their condition, and provides visual quality information.
 
-The inspection pipeline includes:
+The prototype includes:
 
-- Real-time image acquisition from industrial cameras
-- Deep learning-based bottle cap detection
-- Object tracking across video frames
-- Defect verification using intelligent decision algorithms
-- Visual quality status display
-- Edge deployment for real-time industrial operation
+- Video/image acquisition
+- Deep learning-based object detection
+- Object tracking across consecutive frames
+- Defect classification logic
+- Result visualization
+- Real-time inference pipeline
 
-The system can identify defective products and provide reliable quality information without slowing down the production line.
+The goal of this demo is to validate the feasibility of AI-based quality inspection before industrial customization and deployment.
 
 ---
 
 # Architecture
 
 ```
-Industrial Camera
+Video / Camera Input
+
         |
         |
-Image Acquisition
-        |
-        |
-Pre-processing
+
+Image Processing
 (OpenCV)
+
         |
         |
+
 Deep Learning Detection
 (YOLO / PyTorch)
+
         |
         |
+
 Object Tracking
+
         |
         |
-Defect Classification
+
+Defect Analysis
+
         |
         |
+
 Quality Decision
-(OK / NG)
+(OK / Defective)
+
         |
         |
-Display / Industrial Control System
-        |
-        |
-NVIDIA Jetson Edge Deployment
+
+Visualization Output
 ```
+
+Future industrial versions can be integrated with:
+
+- Industrial cameras
+- Edge AI hardware
+- Manufacturing control systems
 
 ---
 
@@ -97,63 +111,60 @@ NVIDIA Jetson Edge Deployment
 
 - OpenCV
 - Image preprocessing
-- Feature extraction
-- Real-time video processing
+- Video processing
+- Real-time visualization
 
 
-## Object Tracking
+## Tracking and Decision Algorithms
 
-- Multi-object tracking algorithms
+- Object tracking
 - Temporal consistency analysis
 - False detection reduction
+- Rule-based defect verification
 
 
-## Edge AI Deployment
+## Edge AI (Future Deployment)
+
+The architecture is compatible with edge AI platforms such as:
 
 - NVIDIA Jetson Orin NX
 - CUDA
-- cuDNN
 - TensorRT
 - GStreamer
 
-
-## Hardware
-
-- Industrial Camera
-- NVIDIA Jetson Edge Computer
-- Industrial communication interfaces
 
 ---
 
 # Dataset Preparation
 
-The AI model is trained using industrial image data collected from beverage production scenarios.
+The AI model is developed using beverage bottle cap image and video data.
 
-The dataset contains different product conditions:
+The dataset preparation process includes:
 
-- Normal bottle caps
-- Incorrectly installed caps
-- Missing caps
-- Damaged caps
-- Defective sealing conditions
-
-
-The data preparation pipeline includes:
-
-- Image collection
+- Image and video collection
 - Data annotation
-- Training/validation split
+- Training and validation preparation
 - Data augmentation
 - Model evaluation
+
+
+Example inspection categories:
+
+- Normal bottle cap
+- Incorrect cap position
+- Missing cap
+- Damaged cap
+- Potential sealing defect
+
 
 ---
 
 # AI Pipeline
 
-The complete inspection process:
+The complete demonstration pipeline:
 
 ```
-Camera Frame
+Input Video
 
       |
       v
@@ -163,7 +174,7 @@ Object Detection
       |
       v
 
-Bottle Tracking
+Object Tracking
 
       |
       v
@@ -178,141 +189,178 @@ Quality Decision
       |
       v
 
-OK / Reject
+Visual Output
 ```
 
-To improve industrial reliability, detection results are verified using temporal information from multiple video frames to reduce false alarms caused by:
+Tracking information is used to improve reliability and reduce false detections caused by:
 
-- Lighting variations
+- Lighting changes
 - Reflections
 - Motion blur
-- Environmental noise
+- Background variations
 
 ---
 
-# Deployment Architecture
+# Demo Implementation
 
-The system is designed for real-time edge AI operation.
+This repository demonstrates the software vision pipeline:
 
 ```
-Industrial Camera
+Video Input
 
-        |
+      |
 
-NVIDIA Jetson Orin NX
+Detector
 
-        |
+      |
 
-CUDA + TensorRT
+Tracker
 
-        |
+      |
 
-AI Inference Engine
+Defect Classifier
 
-        |
+      |
 
-Real-Time Inspection Output
+Visualization
+
+      |
+
+Output Video
 ```
 
-Edge deployment enables:
+The demo output includes:
 
-- Low latency operation
-- Reduced network dependency
-- Real-time production monitoring
-- Industrial scalability
+- Detected objects
+- Confidence scores
+- Inspection status
+- Visual quality indicators
+
+
+---
+
+# Technologies Stack
+
+| Component | Technology |
+|---|---|
+| Programming Language | Python |
+| Computer Vision | OpenCV |
+| Deep Learning Framework | PyTorch |
+| Object Detection | YOLO |
+| Deployment Target | NVIDIA Jetson (Future Integration) |
+
 
 ---
 
 # Results
 
-## Performance Evaluation
+## Demo Evaluation
 
-The system performance will be evaluated based on:
+Performance metrics will be reported after completing the prototype evaluation.
 
 | Metric | Value |
 |---|---|
 | Detection Accuracy | TBD |
-| Inference Speed (FPS) | TBD |
-| Processing Latency | TBD |
-| Hardware Platform | NVIDIA Jetson Orin NX |
+| Processing Speed (FPS) | TBD |
+| Model Latency | TBD |
+| Test Platform | TBD |
 
-
-Final performance results will be updated after complete industrial testing.
 
 ---
 
 # Demo
 
-## Software Demonstration
+## Input Video
 
-Real-time detection demonstration:
+Original production-style video input:
 
-[Video will be added]
-
-
-## Edge Deployment Demonstration
-
-Complete hardware-in-the-loop demonstration:
-
-- Industrial camera
-- NVIDIA Jetson Orin NX
-- Real-time AI inference
-- Output visualization
+```
+demo/sample_video.mp4
+```
 
 
-[Video will be added]
+## Result Video
+
+AI inspection output:
+
+```
+demo/result_video.mp4
+```
+
+
+The final demonstration shows:
+
+- Real-time object detection
+- Defect identification
+- Visual inspection results
+
+
+---
+
+# Future Industrial Deployment
+
+The prototype architecture can be extended toward industrial applications:
+
+## Hardware Integration
+
+- Industrial cameras
+- NVIDIA Jetson edge computers
+- GPU acceleration
+
+
+## Manufacturing Integration
+
+- PLC communication
+- Automatic rejection systems
+- Production monitoring
+
+
+## Advanced AI Development
+
+- Larger industrial datasets
+- Improved defect classification
+- Multi-camera inspection
+- Anomaly detection methods
+
 
 ---
 
 # Applications
 
-The NOVAHOOSH Industrial Inspection platform can be adapted for different manufacturing industries:
+The NOVAHOOSH Vision Inspection platform can be adapted for:
 
 ## Beverage Industry
 
 - Bottle cap inspection
-- Packaging quality control
+- Packaging quality monitoring
 - Leakage prevention
 
 
 ## Food Industry
 
-- Product appearance inspection
-- Packaging defect detection
+- Packaging inspection
+- Product appearance analysis
 
 
 ## Pharmaceutical Industry
 
-- Package inspection
-- Label verification
+- Package verification
+- Visual quality control
 
 
 ## Manufacturing
 
-- Surface defect detection
-- Assembly quality control
-
-
----
-
-# Future Development
-
-Planned improvements:
-
-- Integration with PLC industrial controllers
-- Automatic rejection mechanism
-- Cloud-based production analytics
-- Multi-camera inspection systems
-- Advanced anomaly detection algorithms
+- Defect detection
+- Automated visual inspection
 
 
 ---
 
 # About NOVAHOOSH
 
-**NOVAHOOSH** develops artificial intelligence and computer vision solutions for industrial automation and intelligent quality control.
+**NOVAHOOSH** develops artificial intelligence and computer vision solutions for intelligent automation and industrial quality inspection.
 
-Our mission is to transform traditional manufacturing processes into smart, data-driven production systems.
+Our mission is to transform traditional inspection processes into smart, data-driven systems.
 
 ---
 
@@ -324,8 +372,9 @@ PhD Control Engineering
 
 Artificial Intelligence & Computer Vision Research
 
+
 ---
 
 ## License
 
-This project is proprietary software developed by NOVAHOOSH.
+This project is proprietary software developed by **NOVAHOOSH**.
