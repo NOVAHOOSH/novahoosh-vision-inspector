@@ -3,10 +3,10 @@ from threading import Thread
 import time
 
 class GetFrame(Thread):
-    def __init__(self, frame_queue, config, stop):
+    def __init__(self, frame_queue, config, stop_queue):
         super().__init__()
         self.frame_queue = frame_queue
-        self.stop = stop
+        self.stop_queue = stop_queue
         self.source = config["source"]
         self.fps = config["fps"]
         self.running = True
@@ -20,7 +20,7 @@ class GetFrame(Thread):
             return
 
         t_last = time.time()
-        exit = False
+        exit_flag = False
         while self.running:
             ret, frame = cap.read()
             if not ret:
@@ -29,26 +29,27 @@ class GetFrame(Thread):
                 cap = cv2.VideoCapture(self.source)#,cv2.CAP_FFMPEG, [cv2.CAP_PROP_HW_ACCELERATION, cv2.VIDEO_ACCELERATION_ANY ])
                 _, frame = cap.read()
 
+            packet_out = {"frame": frame,
+                          "detections": [],
+                          "time": time.time()}
+
             if self.frame_queue.empty():
-                self.frame_queue.put_nowait(frame)
+                self.frame_queue.put_nowait(packet_out)
                 t_now = time.time()
                 if (t_now-t_last) < (1/self.fps) :
                     time.sleep(1/self.fps - t_now + t_last)
-                t_last = t_now
+                t_last = time.time()
 
             else:
-                try:
-                    _ = self.frame_queue.get_nowait()
-                    self.frame_queue.put_nowait(frame)
-                    cv2.waitKey(1)
-                except:
-                    continue
+                self.frame_queue.get()
+                self.frame_queue.put_nowait(packet_out)
+                cv2.waitKey(1)
 
-            if (not self.stop.empty()):
-                exit = self.stop.get_nowait()
-                self.stop.put_nowait(exit)
+            if (not self.stop_queue.empty()):
+                exit_flag = self.stop_queue.get_nowait()
+                self.stop_queue.put_nowait(exit_flag)
 
-            if exit:
+            if exit_flag:
                 self.running=False
                 break
             
