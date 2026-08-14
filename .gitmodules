@@ -1,3 +1,6 @@
 [submodule "third_party/yolov7"]
 	path = third_party/yolov7
 	url = https://github.com/WongKinYiu/yolov7.git
+[submodule "third_party/sort"]
+	path = third_party/sort
+	url = https://github.com/abewley/sort.git
