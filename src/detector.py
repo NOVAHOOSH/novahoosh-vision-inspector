@@ -1,27 +1,16 @@
-"""
-Object Detection Module
+from threading import Thread
 
-Responsible for detecting bottle caps
-using deep learning models.
-"""
+class Detector(Thread):
 
 
-class Detector:
+    def run(self):
 
-    def __init__(self):
-        print("Detector initialized")
+        while self.running:
+
+            frame=self.queue.get()
 
 
-    def detect(self, frame):
+            result=self.model(frame)
 
-        """
-        Input:
-            frame: image frame
 
-        Output:
-            detections
-        """
-
-        detections = []
-
-        return detections
+            self.output.put(result)

@@ -1,37 +1,23 @@
-"""
-NOVAHOOSH Vision Inspector
+from queue import Queue
+from config import CONFIG
+from getframe import GetFrame
+from visualization import Visualization
 
-Main application pipeline
-
-Camera / Video
-      |
-Detector
-      |
-Tracker
-      |
-Defect Classifier
-      |
-Visualization
-"""
-
-
-from detector import Detector
-from tracker import Tracker
-from defect_classifier import DefectClassifier
-from visualization import Visualizer
 
 
 def main():
+    frame_queue = Queue(maxsize=CONFIG["queue_size"])
+    STOP = Queue(maxsize=1)
+    grabber = GetFrame(frame_queue,CONFIG,STOP)
+    viewer = Visualization(frame_queue,CONFIG,STOP)
 
-    print("NOVAHOOSH Vision Inspector Started")
+    grabber.start()
+    viewer.start()
 
-    detector = Detector()
-    tracker = Tracker()
-    classifier = DefectClassifier()
-    visualizer = Visualizer()
-
-    print("AI pipeline initialized")
+    viewer.join()
+    grabber.join()
 
 
-if __name__ == "__main__":
+
+if __name__=="__main__":
     main()
