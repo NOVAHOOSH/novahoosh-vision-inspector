@@ -4,6 +4,9 @@ from getframe import GetFrame
 from visualization import Visualization
 from detector import Detector
 
+import warnings
+warnings.filterwarnings("ignore",message="torch.meshgrid: in an upcoming release")
+
 
 
 def main():
@@ -11,7 +14,7 @@ def main():
     STOP = LifoQueue(maxsize=1)
     detector_queue = LifoQueue(maxsize=1)
     grabber = GetFrame(frame_queue,CONFIG,STOP)
-    detector = Detector(frame_queue,detector_queue,STOP)
+    detector = Detector(frame_queue,detector_queue,CONFIG,STOP)
     viewer = Visualization(detector_queue,CONFIG,STOP)
 
     grabber.start()
