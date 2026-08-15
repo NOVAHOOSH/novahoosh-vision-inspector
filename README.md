@@ -4,7 +4,7 @@
 
 🚧 **Status: Active Development / Prototype**
 
-[Demo GIF]
+![Object Detection Demo](results/Detection/detection_demo.gif)
 
 ## Overview
 
