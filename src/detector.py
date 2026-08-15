@@ -84,10 +84,11 @@ class Detector(Thread):
             if len(det):
                 det[:, :4] = scale_coords(img.shape[2:],det[:, :4],frame.shape).round()
                 for *xyxy, conf, class_id in det:
-                    results.append([int(xyxy[0]),int(xyxy[1]),
-                                    int(xyxy[2]),int(xyxy[3]),
-                                    int(class_id.cpu().numpy()),
-                                    int(conf.cpu().numpy()*1000)/10])
+                    if int(class_id.cpu().numpy()) == 39: # bottle
+                        results.append([int(xyxy[0]),int(xyxy[1]),
+                                        int(xyxy[2]),int(xyxy[3]),
+                                        int(class_id.cpu().numpy()),
+                                        int(conf.cpu().numpy()*1000)/10])
 
         return results
 

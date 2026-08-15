@@ -2,7 +2,7 @@ import time
 import cv2
 from threading import Thread
 
-class_name = {0:"bottle_cap",1:"cap"}
+class_name = {39:"bottle",1:"cap"}
 class Visualization(Thread):
     def __init__(self, frame_queue, config, stop_queue):
         super().__init__()
@@ -41,7 +41,7 @@ class Visualization(Thread):
                 #print(x1,y1,x2,y2,class_id,conf_id)
                 cv2.rectangle(frame,(x1,y1),(x2,y2),(0,255,0),2)
                 cv2.rectangle(frame,(x1,y1-30),(x2,y1),(0,255,0),-1)
-                cv2.putText(frame,str(class_id)+"-"+str(conf_id),(x1,y1-10),cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,255,255),2)
+                cv2.putText(frame,class_name[class_id]+"-"+str(conf_id),(x1,y1-10),cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,255,255),2)
         return frame
 
     def stop(self):
