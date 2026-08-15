@@ -1,5 +1,5 @@
 print(" * * * novahoosh-vision-inspector * * *")
-print("     >>> used cttl+c for stop <<<\n")
+print("     >>> Press (q) to exit <<<\n")
 from queue import LifoQueue
 from config import CONFIG
 from getframe import GetFrame
