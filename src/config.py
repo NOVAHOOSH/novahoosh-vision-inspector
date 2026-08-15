@@ -26,7 +26,7 @@ CONFIG = {
     0.7,
 
     "fps":
-    10,
+    200,
 
     "display":
     True

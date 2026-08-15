@@ -1,3 +1,4 @@
+print(" * * * novahoosh-vision-inspector * * *")
 from queue import LifoQueue
 from config import CONFIG
 from getframe import GetFrame

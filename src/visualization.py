@@ -13,11 +13,13 @@ class Visualization(Thread):
 
     def run(self):
         print("Visualization Started")
+        last_time = time.time()
         while self.running:
             if not self.frame_queue.empty():
                 packet_in=self.frame_queue.get_nowait()
-                frame_out = self.drawer(packet_in)
+                frame_out = self.drawer(packet_in,last_time)
                 cv2.imshow( "NOVAHOOSH Vision Inspector        \t      Press & Hold (q) on Keyboard for exit",frame_out)
+                last_time = time.time()
 
                 if (cv2.waitKey(1) & 0xFF == ord('q')):
                     print("Request STOP")
@@ -30,7 +32,7 @@ class Visualization(Thread):
         cv2.destroyAllWindows()
         print("Visualization Stopped")
 
-    def drawer(self,packet_in):
+    def drawer(self,packet_in,last_time):
         frame = packet_in["frame"]
         if packet_in["detections"]:
             height,weight,_ = frame.shape
@@ -42,6 +44,12 @@ class Visualization(Thread):
                 cv2.rectangle(frame,(x1,y1),(x2,y2),(0,255,0),2)
                 cv2.rectangle(frame,(x1,y1-30),(x2,y1),(0,255,0),-1)
                 cv2.putText(frame,class_name[class_id]+"-"+str(conf_id),(x1,y1-10),cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,255,255),2)
+                delta_t = (time.time()-last_time) 
+                if delta_t==0:
+                    fps = 100
+                else: 
+                    fps = int(10/delta_t)/10
+                cv2.putText(frame,"FPS : "+str(fps),(weight-100,50),cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,0,255),2)
         return frame
 
     def stop(self):
