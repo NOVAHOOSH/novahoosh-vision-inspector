@@ -76,6 +76,7 @@ Each processing stage operates independently and communicates with the next stag
 This architecture allows individual processing components to be developed, tested, optimized, and replaced independently.
 ________________________________________
 🚀 Current Demo
+```
 The current prototype demonstrates:
 •	Video-based frame acquisition
 •	Real-time AI object detection
@@ -87,13 +88,14 @@ The current prototype demonstrates:
 •	YOLOv7 integration as an independent detection backend
 •	SORT-based tracking architecture
 •	Configurable runtime parameters
+```
 The current implementation is intentionally focused on demonstrating the core technical pipeline.
 The architecture is designed to evolve toward a complete industrial inspection system.
 ________________________________________
 🔍 Detection Pipeline
+```
 The current detection pipeline uses YOLOv7 as the object-detection backend.
 YOLOv7 is treated as one component of the inspection system rather than the complete NOVAHOOSH solution.
-```
 Input Frame
      │
      ▼
@@ -120,8 +122,8 @@ Visualization
 The NOVAHOOSH application controls the surrounding pipeline, configuration, frame flow, visualization, recording, and future inspection logic.
 ________________________________________
 🧵 Multi-Threaded Architecture
-The prototype uses independent processing threads.
 ```
+The prototype uses independent processing threads.
 GetFrame
    │
    ▼
@@ -183,6 +185,7 @@ novahoosh-vision-inspector
 ```
 ________________________________________
 ⚙️ Installation
+```
 1. Clone the Repository
 Clone the NOVAHOOSH Vision Inspector repository:
 git clone https://github.com/NOVAHOOSH/novahoosh-vision-inspector.git
@@ -194,11 +197,9 @@ YOLOv7 and SORT are maintained as Git submodules and are intentionally separated
 Initialize them with:
 git submodule update --init --recursive
 After successful initialization, the following directories should exist:
-```
 third_party/
 ├── yolov7/
 └── sort/
-```
 If the repository was cloned without submodules, the command above is required before running the application.
 ________________________________________
 3. Install Python Dependencies
@@ -206,8 +207,10 @@ Install the project dependencies using:
 pip install -r requirements.txt
 The project does not use the Ultralytics package.
 YOLOv7 is integrated directly through the dedicated third-party repository.
+```
 ________________________________________
 🖥️ NVIDIA / CUDA
+```
 The current prototype has been tested using:
 CUDA 11.6
 An NVIDIA GPU environment with compatible NVIDIA drivers and CUDA/PyTorch support is required for GPU inference.
@@ -215,20 +218,24 @@ The selected GPU device is configured through:
 "device": "0"
 The exact CUDA and PyTorch installation depends on the target NVIDIA hardware and operating environment.
 For CUDA/PyTorch compatibility, refer to the official PyTorch installation documentation.
+```
 ________________________________________
 📦 Model Weights
+```
 Model weights are kept separately from the application source code.
 Expected location:
 weights/
 └── yolov7.pt
 The detector configuration points to the required model weight.
 Model weights are not considered part of the NOVAHOOSH application source code.
+```
 ________________________________________
 ▶️ Running the Demo
+```
 After installation, submodule initialization, and model preparation, run:
 python src/main.py
 The system starts the complete processing pipeline:
-```
+
 Input Video
      ↓
 GetFrame
@@ -242,17 +249,20 @@ Visualization
 The visualization window displays the processed frames in real time.
 ________________________________________
 🎥 Demo Input
+```
 The current prototype can process a video file configured in:
 src/config.py
 Example:
 "source": "demo/1.mp4"
 A camera source can be integrated later using the same frame-acquisition interface.
+```
 ________________________________________
 ⚙️ Configuration
+```
 Runtime parameters are controlled through:
 src/config.py
 Example:
-```
+
 CONFIG = {
 
     "source":
@@ -289,7 +299,7 @@ CONFIG = {
     "recording":
     True
 }
-```
+
 Main Parameters
 Parameter	Description
 source	Input video or camera source
@@ -300,41 +310,46 @@ display	Enable real-time visualization
 recording	Enable processed-video recording
 confidence	Minimum detection confidence
 device	CUDA device or CPU
+```
 ________________________________________
 🎯 Detection Confidence
+```
 Detection confidence can be controlled directly through:
 "confidence": 0.25
 For example:
 "confidence": 0.70
 requires a higher confidence before a detection is accepted for visualization.
 This parameter allows the behavior of the detection stage to be adjusted without modifying the YOLOv7 source code.
+```
 ________________________________________
 🎥 Recording
+```
 Processed frames can be recorded by enabling:
 "recording": True
 The output file is defined by:
 "output": "demo/result_1.mp4"
 The recorded video contains the visualization output generated by the processing pipeline.
 Example:
-```
+
 demo/
 ├── 1.mp4
 └── result_1.mp4
-```
+
 When recording is disabled:
 "recording": False
 the system can operate without writing the processed frames to disk.
+```
 ________________________________________
 🛑 Stopping the Application
+```
 Press:
 q
 to stop the visualization.
-The application also supports:
-Ctrl + C
-for termination.
+```
 The visualization component releases the video writer and closes OpenCV resources before stopping.
 ________________________________________
 🔗 Object Tracking
+```
 The project uses SORT (Simple Online and Realtime Tracking) as the tracking backend.
 The tracker is kept as an independent third-party component.
 The current architecture allows detection results to be passed to the tracker without coupling the NOVAHOOSH application to the internal implementation of SORT.
@@ -344,11 +359,13 @@ The tracking stage provides the foundation for future functions such as:
 •	Object counting
 •	Inspection history
 •	Defect decision over multiple frames
+```
 ________________________________________
 🏭 Industrial Inspection Concept
+```
 The initial application is beverage bottle-cap inspection.
 A future production implementation can follow the architecture:
-```
+
 Industrial Camera
        │
        ▼
@@ -370,6 +387,7 @@ Quality Decision
 Accept / Reject
 ```
 Potential inspection targets include:
+```
 •	Missing bottle caps
 •	Incorrect cap placement
 •	Damaged caps
@@ -377,8 +395,10 @@ Potential inspection targets include:
 •	Packaging defects
 •	Product appearance defects
 The current repository demonstrates the computer-vision pipeline and is not presented as a certified production inspection system.
+```
 ________________________________________
 📊 Evaluation
+```
 Performance evaluation will be expanded as the prototype develops.
 Planned metrics include:
 Metric	Status
@@ -397,12 +417,14 @@ Performance depends on:
 •	Lighting conditions
 •	Production-line speed
 •	Object appearance
+```
 ________________________________________
 🧪 Current Prototype Scope
+```
 This project is intentionally limited to a focused technical demonstration.
 The current prototype does not attempt to implement a complete industrial production system.
 The primary objective is to demonstrate:
-```
+
 AI Detection
      +
 Real-Time Processing
@@ -416,6 +438,7 @@ Edge-AI Preparation
 This approach allows the core technology to be demonstrated before introducing the complexity of complete industrial integration.
 ________________________________________
 🛣️ Development Roadmap
+```
 Phase 1 — Vision Prototype
 •	 Video input
 •	 Multi-threaded frame processing
@@ -442,12 +465,13 @@ Phase 4 — Industrial Integration
 •	 Automatic rejection mechanism
 •	 Production statistics
 •	 Multi-camera inspection
+```
 ________________________________________
 🧩 Third-Party Components
+```
 NOVAHOOSH Vision Inspector uses selected third-party projects as independent Git submodules.
 They are intentionally kept outside the main application source code.
 ________________________________________
-```
 YOLOv7
 YOLOv7 is used as the object-detection backend.
 Official repository:
@@ -508,6 +532,7 @@ https://github.com/opencv/opencv
 ```
 ________________________________________
 ⚖️ Third-Party License Policy
+```
 Third-party components remain subject to their respective original licenses.
 NOVAHOOSH does not claim ownership of third-party source code.
 The following components are maintained separately from the NOVAHOOSH application code:
@@ -515,8 +540,10 @@ third_party/yolov7/
 third_party/sort/
 Their original license files and notices must remain available.
 Before redistributing or commercially deploying the complete software stack, the applicable licenses of all third-party components must be reviewed and respected.
+```
 ________________________________________
 ⚠️ Prototype Notice
+```
 This repository represents a research and engineering prototype.
 It is intended to demonstrate the architecture and technical feasibility of AI-based industrial visual inspection.
 The current implementation has not been validated as a production-certified inspection system.
@@ -528,8 +555,10 @@ Real industrial deployment requires additional validation, including:
 •	Hardware reliability testing
 •	Safety and control integration
 •	Acceptance testing
+```
 ________________________________________
 🏢 About NOVAHOOSH
+```
 NOVAHOOSH develops intelligent engineering systems based on:
 •	Artificial Intelligence
 •	Computer Vision
@@ -537,9 +566,11 @@ NOVAHOOSH develops intelligent engineering systems based on:
 •	Robotics
 •	Industrial Automation
 •	Advanced Control
+```
 Our goal is to transform conventional production processes into intelligent, data-driven systems.
 ________________________________________
 🤝 Industrial Collaboration
+```
 NOVAHOOSH Vision Inspector is designed as a foundation for developing customized industrial inspection solutions.
 The architecture can be adapted to different:
 •	Products
@@ -549,9 +580,10 @@ The architecture can be adapted to different:
 •	Edge-computing platforms
 For industrial cooperation and customized AI vision solutions:
 NOVAHOOSH
-________________________________________
 ```
+________________________________________
 📄 License
+```
 The NOVAHOOSH application code in this repository is proprietary unless otherwise stated.
 Third-party components remain subject to their respective original licenses.
 In particular:
@@ -563,5 +595,7 @@ before redistributing or commercially deploying the complete software stack.
 ```
 ________________________________________
 NOVAHOOSH
+```
 AI • Computer Vision • Industrial Intelligence
 Building intelligent vision systems for real-world production
+```
