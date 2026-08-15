@@ -1,89 +1,130 @@
-# NOVAHOOSH Industrial Inspection
+# NOVAHOOSH Vision Inspector
 
 > AI-powered computer vision pipeline for industrial production-line inspection.
 
+![Status](https://img.shields.io/badge/status-active%20development-orange)
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 🚧 **Status: Active Development / Prototype**
 
-![Object Detection Demo](results/Detection/detection_demo.gif)
+NOVAHOOSH Vision Inspector is a computer vision prototype designed to
+demonstrate AI-based visual inspection for industrial production-line
+environments.
+
+The project focuses on detecting and analyzing products moving through
+a production process using camera-based computer vision.
+
+---
 
 ## Overview
 
-Industrial production lines often require visual inspection
-to identify defective products and maintain consistent quality.
+Industrial production lines often require continuous visual inspection
+to identify defective products, monitor production processes, and maintain
+consistent quality.
 
-This project demonstrates an AI-based approach for detecting
-and analyzing products moving through a production environment.
+Manual inspection can be:
 
-## Current Capabilities
+- Time-consuming
+- Expensive
+- Inconsistent
+- Difficult to scale
+- Dependent on human attention
 
-- [x] Video input
-- [x] Object detection
-- [ ] Multi-object tracking
-- [ ] Defect classification
-- [ ] Production counting
-- [ ] Performance evaluation
+NOVAHOOSH Vision Inspector explores an AI-based approach in which
+production-line video is processed automatically to detect and analyze
+products.
 
-## System Pipeline
+The initial demonstration focuses on a beverage-production scenario,
+with particular attention to visual inspection of bottle caps.
 
-Camera / Video
-↓
-Object Detection
-↓
-Object Tracking
-↓
-Defect Analysis
-↓
-Inspection Result
+The architecture is intended to be adaptable to other industrial
+inspection applications.
 
-## Industrial Use Case
-
-The initial demonstration focuses on visual inspection
-of bottle-cap defects in a beverage production environment.
-
-The architecture is designed to be adaptable to other
-industrial inspection tasks.
+---
 
 ## Demo
 
-...
+### Object Detection
 
-## Technology
+The current prototype processes industrial production-line footage
+and performs AI-based object detection.
 
-- Python
-- OpenCV
-- YOLO
-- NumPy
-- PyTorch
+![Object Detection Demo](results/Detection/detection_demo.gif)
 
-## Project Structure
+The GIF above is a short demonstration of the current development state.
 
-...
+A complete demonstration video and additional results will be added
+as the project progresses.
 
-## Evaluation
+---
 
-...
+## Current Capabilities
 
-## Roadmap
+### Implemented
 
-...
+- [x] Video input
+- [x] Object detection
+- [x] Visualization of detection results
 
-## Reference Video
+### In Development
 
-This demonstration uses publicly available industrial
-reference footage.
+- [ ] Multi-object tracking
+- [ ] Production-line object counting
+- [ ] Defect classification
+- [ ] Inspection decision logic
+- [ ] Performance evaluation
+- [ ] Industrial deployment pipeline
 
-Source:
-[Original Video]
+The project is intentionally being developed incrementally.
+Production deployment is not currently claimed.
 
-The footage is used as a reference/demo input.
-The AI processing pipeline is developed independently.
+---
 
-## About NOVAHOOSH
+# Industrial Use Case
 
-NOVAHOOSH develops intelligent engineering systems
-combining AI, Computer Vision, Robotics, Embedded Systems
-and Advanced Control.
+## Bottle Cap Inspection
 
-## Contact
+The initial use case demonstrates how computer vision can be applied
+to inspect bottle caps in a beverage production environment.
 
-NOVAHOOSH
+A production-line inspection system could potentially identify
+conditions such as:
+
+- Missing caps
+- Incorrect cap placement
+- Damaged caps
+- Abnormal product appearance
+- Other visually detectable production defects
+
+The current repository represents a prototype demonstrating the
+underlying computer vision pipeline rather than a production-certified
+inspection system.
+
+---
+
+# System Pipeline
+
+The planned inspection pipeline follows the structure:
+
+```text
+Production-Line Camera / Video
+            │
+            ▼
+      Video Acquisition
+            │
+            ▼
+      Object Detection
+            │
+            ▼
+      Object Tracking
+            │
+            ▼
+     Defect / Quality Analysis
+            │
+            ▼
+      Inspection Decision
+            │
+            ▼
+       Quality Output
