@@ -26,9 +26,11 @@ CONFIG = {
     0.7,
 
     "fps":
-    200,
+    30,
 
     "display":
-    True
+    True,
 
+    "recording":
+    True
 }

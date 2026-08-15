@@ -9,6 +9,10 @@ class Visualization(Thread):
         self.frame_queue = frame_queue
         self.output = config["output"]
         self.stop_queue = stop_queue
+        self.recording = config["recording"]
+        self.fps = config["fps"]
+        self.display = config["display"]
+        self.writer = None
         self.running=True
 
     def run(self):
@@ -18,7 +22,9 @@ class Visualization(Thread):
             if not self.frame_queue.empty():
                 packet_in=self.frame_queue.get_nowait()
                 frame_out = self.drawer(packet_in,last_time)
-                cv2.imshow( "NOVAHOOSH Vision Inspector        \t      Press & Hold (q) on Keyboard for exit",frame_out)
+                self.recorder(frame_out)
+                if self.display:
+                    cv2.imshow( "NOVAHOOSH Vision Inspector        \t      Press & Hold (q) on Keyboard for exit",frame_out)
                 last_time = time.time()
 
                 if (cv2.waitKey(1) & 0xFF == ord('q')):
@@ -28,9 +34,27 @@ class Visualization(Thread):
                     break
             else:
                 time.sleep(0.0001)
+                    
+        if self.display:
+            cv2.destroyAllWindows()
 
-        cv2.destroyAllWindows()
+        if self.writer is not None:
+            self.writer.release()
+            self.writer = None
+
         print("Visualization Stopped")
+
+    def recorder(self,frame):
+        if self.recording and self.writer is None:
+            height, width = frame.shape[:2]
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            self.writer = cv2.VideoWriter(self.output,fourcc,self.fps,(width, height))
+
+            if not self.writer.isOpened():
+                print("ERROR: Cannot open output video")
+                self.writer = None
+        if self.recording and self.writer is not None:
+            self.writer.write(frame)
 
     def drawer(self,packet_in,last_time):
         frame = packet_in["frame"]

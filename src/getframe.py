@@ -30,8 +30,8 @@ class GetFrame(Thread):
                 _, frame = cap.read()
 
             packet_out = {"frame": frame,
-                          "detections": [],
-                          "time": time.time()}
+                            "detections": [],
+                            "time": time.time()}
 
             if self.frame_queue.empty():
                 self.frame_queue.put_nowait(packet_out)
