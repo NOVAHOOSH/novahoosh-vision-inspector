@@ -14,7 +14,7 @@ The initial demonstration focuses on **beverage bottle-cap inspection**, where i
 The project demonstrates how artificial intelligence, computer vision, object detection, tracking, and real-time processing can be combined into an industrial inspection pipeline.
 
 ---
-🎥 Demo
+# 🎥 Demo
 
 ![Object Detection Demo](results/Detection/detection_demo.gif)
 ---
@@ -188,7 +188,7 @@ novahoosh-vision-inspector
     └── metrics.md
 ```
 ________________________________________
-⚙️ Installation
+# ⚙️ Installation
 
 1. Clone the Repository
 
@@ -253,7 +253,7 @@ The detector configuration points to the required model weight.
 Model weights are not considered part of the NOVAHOOSH application source code.
 
 ________________________________________
-▶️ Running the Demo
+# ▶️ Running the Demo
 
 After installation, submodule initialization, and model preparation, run:
 ```
@@ -280,8 +280,9 @@ The current prototype can process a video file configured in:
 src/config.py
 Example:
 "source": "demo/1.mp4"
-A camera source can be integrated later using the same frame-acquisition interface.
 ```
+A camera source can be integrated later using the same frame-acquisition interface.
+
 ________________________________________
 🎥 Reference Video
 
@@ -296,7 +297,7 @@ and is used here only as reference/demo input.
 The AI processing pipeline was independently developed
 for this project.
 ________________________________________
-⚙️ Configuration
+# ⚙️ Configuration
 
 Runtime parameters are controlled through:
 ```
@@ -342,17 +343,25 @@ CONFIG = {
 }
 ```
 Main Parameters
-```
+
 Parameter	Description
+
 source	Input video or camera source
+
 output	Processed output video
+
 fps	Processing / recording frame rate
+
 queue_size	Maximum queue size between processing stages
+
 display	Enable real-time visualization
+
 recording	Enable processed-video recording
+
 confidence	Minimum detection confidence
+
 device	CUDA device or CPU
-```
+
 ________________________________________
 🎯 Detection Confidence
 
@@ -396,7 +405,7 @@ to stop the visualization.
 ```
 The visualization component releases the video writer and closes OpenCV resources before stopping.
 ________________________________________
-🔗 Object Tracking
+# 🔗 Object Tracking
 
 The project uses SORT (Simple Online and Realtime Tracking) as the tracking backend.
 
@@ -413,7 +422,7 @@ The tracking stage provides the foundation for future functions such as:
 •	Defect decision over multiple frames
 ```
 ________________________________________
-🏭 Industrial Inspection Concept
+# 🏭 Industrial Inspection Concept
 
 The initial application is beverage bottle-cap inspection.
 
@@ -455,16 +464,24 @@ ________________________________________
 Performance evaluation will be expanded as the prototype develops.
 
 Planned metrics include:
-```
+
 Metric	Status
+
 Detection Accuracy	In Development
+
 Detection Confidence	Available
+
 Processing FPS	In Development
+
 Inference Latency	In Development
+
 Tracking Stability	In Development
+
 Defect Detection Accuracy	Planned
+
 False Detection Rate	Planned
-```
+
+
 Performance depends on:
 ```
 •	Detection model
@@ -497,8 +514,9 @@ Edge-AI Preparation
 This approach allows the core technology to be demonstrated before introducing the complexity of complete industrial integration.
 ________________________________________
 🛣️ Development Roadmap
-```
+
 Phase 1 — Vision Prototype
+```
 •	 Video input
 •	 Multi-threaded frame processing
 •	 YOLOv7 inference
@@ -506,25 +524,31 @@ Phase 1 — Vision Prototype
 •	 Configurable confidence threshold
 •	 Detection visualization
 •	 Processed-video recording
+```
 Phase 2 — Intelligent Inspection
+```
 •	 Tracking architecture
 •	 Robust object tracking validation
 •	 Temporal object analysis
 •	 Bottle-cap defect classification
 •	 Industrial OK / NG decision logic
 •	 Performance metrics
+```
 Phase 3 — Edge AI
+```
 •	 NVIDIA Jetson deployment
 •	 GStreamer-based camera pipeline
 •	 Edge inference optimization
 •	 Hardware-in-the-loop demonstration
+```
 Phase 4 — Industrial Integration
+```
 •	 Industrial camera integration
 •	 PLC communication
 •	 Automatic rejection mechanism
 •	 Production statistics
 •	 Multi-camera inspection
-```
+
 ________________________________________
 🧩 Third-Party Components
 
@@ -532,8 +556,8 @@ NOVAHOOSH Vision Inspector uses selected third-party projects as independent Git
 
 They are intentionally kept outside the main application source code.
 ________________________________________
-```
 YOLOv7
+```
 YOLOv7 is used as the object-detection backend.
 Official repository:
 https://github.com/WongKinYiu/yolov7
@@ -546,8 +570,10 @@ C.-Y. Wang, A. Bochkovskiy, and H.-Y. M. Liao,
 Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2023.
 Paper:
 https://arxiv.org/abs/2207.02696
+```
 ________________________________________
 SORT
+```
 SORT is used as the object-tracking backend.
 Official repository:
 https://github.com/abewley/sort
@@ -562,8 +588,9 @@ https://doi.org/10.1109/ICIP.2016.7533003
 ```
 ________________________________________
 📚 References
-```
+
 YOLOv7
+```
 Wang, Chien-Yao; Bochkovskiy, Alexey; Liao, Hong-Yuan Mark.
 YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors.
 CVPR, 2023.
@@ -571,8 +598,10 @@ Repository:
 https://github.com/WongKinYiu/yolov7
 Paper:
 https://arxiv.org/abs/2207.02696
+```
 ________________________________________
 SORT
+```
 Bewley, Alex; Ge, Zongyuan; Ott, Lionel; Ramos, Fabio; Upcroft, Ben.
 Simple Online and Realtime Tracking.
 2016 IEEE International Conference on Image Processing (ICIP).
@@ -580,15 +609,19 @@ DOI:
 https://doi.org/10.1109/ICIP.2016.7533003
 Repository:
 https://github.com/abewley/sort
+```
 ________________________________________
 PyTorch
+```
 The project uses PyTorch as the deep-learning inference framework.
 Official documentation:
 https://pytorch.org/
 CUDA-compatible PyTorch installation information:
 https://pytorch.org/get-started/previous-versions/
+```
 ________________________________________
 OpenCV
+```
 OpenCV is used for image acquisition, image processing, visualization, and video handling.
 Official repository:
 https://github.com/opencv/opencv
@@ -603,9 +636,11 @@ The following components are maintained separately from the NOVAHOOSH applicatio
 ```
 third_party/yolov7/
 third_party/sort/
-Their original license files and notices must remain available.
-Before redistributing or commercially deploying the complete software stack, the applicable licenses of all third-party components must be reviewed and respected.
 ```
+Their original license files and notices must remain available.
+
+Before redistributing or commercially deploying the complete software stack, the applicable licenses of all third-party components must be reviewed and respected.
+
 ________________________________________
 ⚠️ Prototype Notice
 
@@ -647,16 +682,21 @@ The architecture can be adapted to different:
 •	Inspection requirements
 •	Edge-computing platforms
 ```
-For industrial cooperation and customized AI vision solutions:NOVAHOOSH
+For industrial cooperation and customized AI vision solutions:  NOVAHOOSH
 ________________________________________
 📄 License
-```
+
 The NOVAHOOSH application code in this repository is proprietary unless otherwise stated.
+
 Third-party components remain subject to their respective original licenses.
+
 In particular:
+```
 •	YOLOv7 → GPL-3.0
 •	SORT → GPL
+```
 Please review the individual license files contained within:
+```
 third_party/
 before redistributing or commercially deploying the complete software stack.
 ```
