@@ -13,9 +13,13 @@ The initial demonstration focuses on **beverage bottle-cap inspection**, where i
 
 The project demonstrates how artificial intelligence, computer vision, object detection, tracking, and real-time processing can be combined into an industrial inspection pipeline.
 
+---
+🎥 Demo
+
+![Object Detection Demo](results/Detection/detection_demo.gif)
+---
 > 🚧 **Project Status: Prototype / Demonstration**
 
----
 
 # 🎯 Industrial Problem
 
