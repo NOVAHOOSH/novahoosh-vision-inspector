@@ -451,7 +451,7 @@ Potential inspection targets include:
 ```
 The current repository demonstrates the computer-vision pipeline and is not presented as a certified production inspection system.
 ________________________________________
-📊 Evaluation
+# 📊 Evaluation
 
 Performance evaluation will be expanded as the prototype develops.
 
@@ -473,7 +473,7 @@ Performance evaluation will be expanded as the prototype develops.
 - [ ] Industrial deployment pipeline
 
 
-Performance depends on:
+### Performance depends on:
 ```
 •	Detection model
 •	Input resolution
@@ -689,8 +689,9 @@ In particular:
 Please review the individual license files contained within:
 ```
 third_party/
-before redistributing or commercially deploying the complete software stack.
 ```
+before redistributing or commercially deploying the complete software stack.
+
 ________________________________________
 @ NOVAHOOSH
 
