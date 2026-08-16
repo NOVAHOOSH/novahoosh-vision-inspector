@@ -548,7 +548,7 @@ Phase 4 — Industrial Integration
 •	 Automatic rejection mechanism
 •	 Production statistics
 •	 Multi-camera inspection
-
+```
 ________________________________________
 🧩 Third-Party Components
 
