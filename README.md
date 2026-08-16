@@ -342,26 +342,18 @@ CONFIG = {
     True
 }
 ```
-Main Parameters
-
-Parameter	Description
-
-source	Input video or camera source
-
-output	Processed output video
-
-fps	Processing / recording frame rate
-
-queue_size	Maximum queue size between processing stages
-
-display	Enable real-time visualization
-
-recording	Enable processed-video recording
-
-confidence	Minimum detection confidence
-
-device	CUDA device or CPU
-
+Main Parameters:
+```
+Parameter -> Description
+source -> Input video or camera source
+output -> Processed output video
+fps -> Processing / recording frame rate
+queue_size -> Maximum queue size between processing stages
+display -> Enable real-time visualization
+recording -> Enable processed-video recording
+confidence -> Minimum detection confidence
+device -> CUDA device or CPU
+```
 ________________________________________
 🎯 Detection Confidence
 
@@ -463,23 +455,22 @@ ________________________________________
 
 Performance evaluation will be expanded as the prototype develops.
 
-Planned metrics include:
+## Current Capabilities
 
-Metric	Status
+### Implemented
 
-Detection Accuracy	In Development
+- [x] Video input
+- [x] Object detection
+- [x] Visualization of detection results
 
-Detection Confidence	Available
+### In Development
 
-Processing FPS	In Development
-
-Inference Latency	In Development
-
-Tracking Stability	In Development
-
-Defect Detection Accuracy	Planned
-
-False Detection Rate	Planned
+- [ ] Multi-object tracking
+- [ ] Production-line object counting
+- [ ] Defect classification
+- [ ] Inspection decision logic
+- [ ] Performance evaluation
+- [ ] Industrial deployment pipeline
 
 
 Performance depends on:
