@@ -260,6 +260,18 @@ Example:
 "source": "demo/1.mp4"
 A camera source can be integrated later using the same frame-acquisition interface.
 ```
+🎥 Reference Video
+
+The demonstration uses publicly available industrial reference footage.
+
+**Original source:**  
+[https://www.tiktok.com/@klein7325](https://www.tiktok.com/@klein7325/video/7668933041070312712)
+
+The original footage belongs to its respective owner
+and is used here only as reference/demo input.
+
+The AI processing pipeline was independently developed
+for this project.
 ________________________________________
 ⚙️ Configuration
 ```
@@ -407,6 +419,7 @@ ________________________________________
 
 Performance evaluation will be expanded as the prototype develops.
 Planned metrics include:
+```
 Metric	Status
 Detection Accuracy	In Development
 Detection Confidence	Available
@@ -415,7 +428,7 @@ Inference Latency	In Development
 Tracking Stability	In Development
 Defect Detection Accuracy	Planned
 False Detection Rate	Planned
-
+```
 Performance depends on:
 ```
 •	Detection model
