@@ -97,9 +97,10 @@ The current implementation is intentionally focused on demonstrating the core te
 The architecture is designed to evolve toward a complete industrial inspection system.
 ________________________________________
 🔍 Detection Pipeline
-```
+
 The current detection pipeline uses YOLOv7 as the object-detection backend.
 YOLOv7 is treated as one component of the inspection system rather than the complete NOVAHOOSH solution.
+```
 Input Frame
      │
      ▼
@@ -126,8 +127,9 @@ Visualization
 The NOVAHOOSH application controls the surrounding pipeline, configuration, frame flow, visualization, recording, and future inspection logic.
 ________________________________________
 🧵 Multi-Threaded Architecture
-```
+
 The prototype uses independent processing threads.
+```
 GetFrame
    │
    ▼
@@ -149,8 +151,6 @@ Tracker
 Visualization
 ```
 A small queue size can be used to prioritize recent frames and avoid excessive processing latency.
-Example:
-"queue_size": 1
 This design is particularly useful for real-time production-line applications where processing the newest available frame may be more important than processing every historical frame.
 ________________________________________
 📁 Project Structure
@@ -189,57 +189,78 @@ novahoosh-vision-inspector
 ```
 ________________________________________
 ⚙️ Installation
-```
+
 1. Clone the Repository
+
 Clone the NOVAHOOSH Vision Inspector repository:
+```
 git clone https://github.com/NOVAHOOSH/novahoosh-vision-inspector.git
+```
 Enter the project directory:
+```
 cd novahoosh-vision-inspector
+```
 ________________________________________
 2. Initialize Third-Party Submodules
+
 YOLOv7 and SORT are maintained as Git submodules and are intentionally separated from the NOVAHOOSH application code.
+
 Initialize them with:
+```
 git submodule update --init --recursive
+```
 After successful initialization, the following directories should exist:
+```
 third_party/
 ├── yolov7/
 └── sort/
+```
 If the repository was cloned without submodules, the command above is required before running the application.
 ________________________________________
 3. Install Python Dependencies
+
 Install the project dependencies using:
+```
 pip install -r requirements.txt
+```
 The project does not use the Ultralytics package.
 YOLOv7 is integrated directly through the dedicated third-party repository.
-```
 ________________________________________
 🖥️ NVIDIA / CUDA
-```
+
 The current prototype has been tested using:
+```
 CUDA 11.6
+```
 An NVIDIA GPU environment with compatible NVIDIA drivers and CUDA/PyTorch support is required for GPU inference.
 The selected GPU device is configured through:
+```
 "device": "0"
+```
 The exact CUDA and PyTorch installation depends on the target NVIDIA hardware and operating environment.
 For CUDA/PyTorch compatibility, refer to the official PyTorch installation documentation.
-```
 ________________________________________
 📦 Model Weights
-```
+
 Model weights are kept separately from the application source code.
+
 Expected location:
+```
 weights/
 └── yolov7.pt
+```
 The detector configuration points to the required model weight.
 Model weights are not considered part of the NOVAHOOSH application source code.
-```
+
 ________________________________________
 ▶️ Running the Demo
-```
-After installation, submodule initialization, and model preparation, run:
-python src/main.py
-The system starts the complete processing pipeline:
 
+After installation, submodule initialization, and model preparation, run:
+```
+python src/main.py
+```
+The system starts the complete processing pipeline:
+```
 Input Video
      ↓
 GetFrame
@@ -253,13 +274,15 @@ Visualization
 The visualization window displays the processed frames in real time.
 ________________________________________
 🎥 Demo Input
-```
+
 The current prototype can process a video file configured in:
+```
 src/config.py
 Example:
 "source": "demo/1.mp4"
 A camera source can be integrated later using the same frame-acquisition interface.
 ```
+________________________________________
 🎥 Reference Video
 
 The demonstration uses publicly available industrial reference footage.
@@ -274,11 +297,13 @@ The AI processing pipeline was independently developed
 for this project.
 ________________________________________
 ⚙️ Configuration
-```
-Runtime parameters are controlled through:
-src/config.py
-Example:
 
+Runtime parameters are controlled through:
+```
+src/config.py
+```
+Example:
+```
 CONFIG = {
 
     "source":
@@ -315,8 +340,9 @@ CONFIG = {
     "recording":
     True
 }
-
+```
 Main Parameters
+```
 Parameter	Description
 source	Input video or camera source
 output	Processed output video
@@ -329,23 +355,27 @@ device	CUDA device or CPU
 ```
 ________________________________________
 🎯 Detection Confidence
-```
+
 Detection confidence can be controlled directly through:
+```
 "confidence": 0.25
 For example:
 "confidence": 0.70
+```
 requires a higher confidence before a detection is accepted for visualization.
 This parameter allows the behavior of the detection stage to be adjusted without modifying the YOLOv7 source code.
-```
+
 ________________________________________
 🎥 Recording
-```
+
 Processed frames can be recorded by enabling:
+```
 "recording": True
 The output file is defined by:
 "output": "demo/result_1.mp4"
 ```
 The recorded video contains the visualization output generated by the processing pipeline.
+
 Example:
 ```
 demo/
@@ -354,8 +384,9 @@ demo/
 
 When recording is disabled:
 "recording": False
-the system can operate without writing the processed frames to disk.
 ```
+the system can operate without writing the processed frames to disk.
+
 ________________________________________
 🛑 Stopping the Application
 ```
@@ -368,20 +399,24 @@ ________________________________________
 🔗 Object Tracking
 
 The project uses SORT (Simple Online and Realtime Tracking) as the tracking backend.
-The tracker is kept as an independent third-party component.
-The current architecture allows detection results to be passed to the tracker without coupling the NOVAHOOSH application to the internal implementation of SORT.
-The tracking stage provides the foundation for future functions such as:
 
+The tracker is kept as an independent third-party component.
+
+The current architecture allows detection results to be passed to the tracker without coupling the NOVAHOOSH application to the internal implementation of SORT.
+
+The tracking stage provides the foundation for future functions such as:
+```
 •	Object identity across frames
 •	Temporal consistency
 •	Object counting
 •	Inspection history
 •	Defect decision over multiple frames
-
+```
 ________________________________________
 🏭 Industrial Inspection Concept
 
 The initial application is beverage bottle-cap inspection.
+
 A future production implementation can follow the architecture:
 ```
 Industrial Camera
@@ -418,6 +453,7 @@ ________________________________________
 📊 Evaluation
 
 Performance evaluation will be expanded as the prototype develops.
+
 Planned metrics include:
 ```
 Metric	Status
@@ -443,7 +479,9 @@ ________________________________________
 🧪 Current Prototype Scope
 
 This project is intentionally limited to a focused technical demonstration.
+
 The current prototype does not attempt to implement a complete industrial production system.
+
 The primary objective is to demonstrate:
 ```
 AI Detection
@@ -491,6 +529,7 @@ ________________________________________
 🧩 Third-Party Components
 
 NOVAHOOSH Vision Inspector uses selected third-party projects as independent Git submodules.
+
 They are intentionally kept outside the main application source code.
 ________________________________________
 ```
@@ -559,6 +598,7 @@ ________________________________________
 
 Third-party components remain subject to their respective original licenses.
 NOVAHOOSH does not claim ownership of third-party source code.
+
 The following components are maintained separately from the NOVAHOOSH application code:
 ```
 third_party/yolov7/
@@ -572,6 +612,7 @@ ________________________________________
 This repository represents a research and engineering prototype.
 It is intended to demonstrate the architecture and technical feasibility of AI-based industrial visual inspection.
 The current implementation has not been validated as a production-certified inspection system.
+
 Real industrial deployment requires additional validation, including:
 ```
 •	Camera and lighting optimization
