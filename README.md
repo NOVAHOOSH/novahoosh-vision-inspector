@@ -607,7 +607,7 @@ third_party/
 before redistributing or commercially deploying the complete software stack.
 ```
 ________________________________________
-NOVAHOOSH
+@ NOVAHOOSH
 
 AI • Computer Vision • Industrial Intelligence
 Building intelligent vision systems for real-world production
